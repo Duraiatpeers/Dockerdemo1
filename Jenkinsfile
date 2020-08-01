@@ -1,16 +1,23 @@
 pipeline {
     agent any
-    tool name: 'MAVEN_HOME', type: 'maven'
-    tool name: 'Javs', type: 'jdk'
-    stages {
 
-        stage ('Build') {
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MAVEN_HOME"
+    }
+
+    stages {
+        stage('Build') {
             steps {
-                bat 'mvn -Dmaven.test.failure.ignore=true install' 
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
+
             post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
                 success {
-                    junit 'target/surefire-reports/**/*.xml' 
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
