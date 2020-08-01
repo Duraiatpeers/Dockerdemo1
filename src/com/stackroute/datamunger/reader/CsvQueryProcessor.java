@@ -41,7 +41,7 @@ public class CsvQueryProcessor extends QueryProcessingEngine {
 		Headerlines = br.readLine();
 		fields = Headerlines.split(",");
 		Header header = new Header(fields);
-		return header;
+		return null;
 
 	}
 
