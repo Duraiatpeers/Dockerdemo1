@@ -10,7 +10,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                bat 'mvn -Dmaven.test.failure.ignore=true install' 
+                bat '${M2_HOME}/bin/mvn -Dmaven.test.failure.ignore=true install' 
             }
             post {
                 success {
