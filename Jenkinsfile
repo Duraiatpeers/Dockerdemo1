@@ -1,10 +1,7 @@
 pipeline {
     agent any
-    tools{
-        jdk javs
-        maven 'MAVEN_HOME'
-    }
-    
+    tool name: 'MAVEN_HOME', type: 'maven'
+    tool name: 'Javs', type: 'jdk'
     stages {
 
         stage ('Build') {
