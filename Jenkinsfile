@@ -1,13 +1,14 @@
 pipeline {
     agent any
-    environment{
-        MAVEN_HOME="C:/apache-maven-3.6.3/bin"
+    tools{
+        maven 'MAVEN_HOME'
     }
+    
     stages {
 
         stage ('Build') {
             steps {
-                echo '${MAVEN_HOME}/mvn -Dmaven.test.failure.ignore=true install' 
+                echo 'mvn -Dmaven.test.failure.ignore=true install' 
             }
             post {
                 success {
