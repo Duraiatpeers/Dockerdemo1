@@ -46,7 +46,7 @@ public class DataMungerTest {
 	public void testRetrieveHeaderFailure() throws IOException {
 		Header result = reader.getHeader();
 
-		assertNull("Headers are not matching with the included ipl.csv file of data folder in number or sequence",
+		assertNotNull("Headers are not matching with the included ipl.csv file of data folder in number or sequence",
 				result.getHeaders());
 		display("successRetrieveHeaderTestCase", result.toString());
 	}
